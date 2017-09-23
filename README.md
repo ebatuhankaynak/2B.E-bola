@@ -1,5 +1,5 @@
 #e-Bola
-Cs 319 project repository for group 2B
+e-Bola project repository for group 2B
 
 
 As group 2B, our project is a real time strategy - puzzle game, which consists of 4-5 levels.
