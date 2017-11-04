@@ -15,6 +15,10 @@ public class EntityManager{
 		cellyManager.evaluateInput(pressState, key);
 	}
 	
+	public void evaluateInput(boolean[] keys){
+		cellyManager.evaluateInput(keys);
+	}
+	
 	public void update(){
 		cellyManager.update();
 	}

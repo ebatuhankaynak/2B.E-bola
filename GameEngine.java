@@ -36,10 +36,11 @@ public class GameEngine implements InputListener{
 		inputManager = new InputManager();
 		inputManager.addListener(this);
 		gamePanel = new GamePanel(inputManager, map.currentRoom, resourceReader.getImages());
+		gamePanel.requestFocus();
 		
 		new Timer().schedule(new TimerTask(){
 			public void run() {
-				//entityManager.update();
+				entityManager.evaluateInput(inputManager.keys);
 				gamePanel.update(map.currentRoom);
 			}
 		}, 0, 4);
@@ -47,7 +48,9 @@ public class GameEngine implements InputListener{
 	
 	public void inputRecieved(int pressState, int key){
 		//check şf non celly button
-		entityManager.evaluateInput(pressState, key);
+		
+		//entityManager.evaluateInput(pressState, key);
+		//entityManager.evaluateInput(inputManager.keys);
 		//gamePanel.update(map.currentRoom);
 		//System.out.println("Input Recep: " + key);
 	}

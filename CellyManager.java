@@ -17,6 +17,41 @@ public class CellyManager{
 		
 	}
 	
+	/*
+	37 - Left
+	38 - Up
+	39 - Right
+	40 - Down
+	*/
+	
+	public void evaluateInput(boolean[] keys){
+		if(keys[0]){
+			celly.setVelocityX(-5);
+		}else if(keys[2]){
+			celly.setVelocityX(5);
+		}else{
+			celly.setVelocityX(0);
+		}
+		
+		if(keys[1]){
+			celly.setVelocityY(-5);
+		}else if(keys[3]){
+			celly.setVelocityY(5);
+		}else{
+			celly.setVelocityY(0);
+		}
+		
+		Point cp = celly.getPoint();
+		Point point = new Point(cp.getX() + celly.getVelocityX(), cp.getY() + celly.getVelocityY());
+		
+		//Point point = calculateNewCoordinates(key);
+		if(checkIfValidMove(point)){
+			celly.setPoint(point);
+			System.out.println(point);
+		}
+	}
+	
+	/*
 	public void evaluateInput(int pressState, int key){
 		if (pressState == 1){
 			if (key == KeyEvent.VK_LEFT) {
@@ -53,8 +88,11 @@ public class CellyManager{
 		//Point point = calculateNewCoordinates(key);
 		if(checkIfValidMove(point)){
 			celly.setPoint(point);
+			System.out.println(point);
 		}
 	}
+	*/
+	
 	
 	public boolean checkIfValidMove(Point point){
 		/*

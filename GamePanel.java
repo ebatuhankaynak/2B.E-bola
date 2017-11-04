@@ -30,22 +30,26 @@ public class GamePanel extends JLayeredPane{
 		dynamicPanel.setBounds(0, 0, width, height);
 		dynamicPanel.addKeyListener(inputManager);
 		dynamicPanel.setFocusable(true);
-		dynamicPanel.requestFocusInWindow();
+		
+		add(dynamicPanel, new Integer(0));
 		
 		staticPanel = new StaticPanel(room, images);
 		staticPanel.setBounds(0, 0, width, height);
 		
 		add(staticPanel, new Integer(-1));
-		add(dynamicPanel, new Integer(0));
 	}
 	
-	public void setKeyListener(KeyListener keyListener){
-		dynamicPanel.addKeyListener(keyListener);
+	public void requestFocus(){
+		dynamicPanel.requestFocusInWindow();
 	}
 	
 	public void update(Room room){
 		dynamicPanel.update(room);
 		staticPanel.update(room);
+		
+		
+		
+		dynamicPanel.requestFocusInWindow();
 	}
 	
 	private abstract class Layer extends JPanel{
