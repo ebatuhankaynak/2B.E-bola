@@ -51,7 +51,7 @@ public class CellyManager{
 		}
 	}
 	
-	/*
+	
 	public void evaluateInput(int pressState, int key){
 		if (pressState == 1){
 			if (key == KeyEvent.VK_LEFT) {
@@ -91,7 +91,7 @@ public class CellyManager{
 			System.out.println(point);
 		}
 	}
-	*/
+	
 	
 	
 	public boolean checkIfValidMove(Point point){
