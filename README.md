@@ -22,6 +22,7 @@ The game starts with a cell membrane, that doesn't have any organelles in it. In
 
 ## About Deployment
 - [ ] Use Maven or ANT to packaging and deployment
-    - [ ] Package soruce code
-    - [ ] Seperate class files and java files
+    - [x] Package soruce code
+    - [x] Seperate class files and java files
+    - [ ] Change file structure to use "com.ebola"
     - [ ] Create a jar
