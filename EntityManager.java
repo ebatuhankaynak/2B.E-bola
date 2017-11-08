@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class EntityManager{
 
 	private CellyManager cellyManager;
+	private VirusManager virusManager;
 	private Entity[][] entities;
 	
 	private final int ROW = GameEngine.ROW;
@@ -16,13 +17,22 @@ public class EntityManager{
 	public EntityManager(Entity[][] entities, ArrayList<Alive> aliveEntities){
 		this.entities = entities;
 		Celly celly = null;
+		ArrayList<Virus> viri = new ArrayList<Virus>();
 		for(int i = 0; i < aliveEntities.size(); i++){
-			Alive alive = aliveEntities.get(i);
-			if(alive instanceof Celly){
-				celly = (Celly) alive;
+			if(aliveEntities.get(i) instanceof Celly){
+				celly = (Celly) aliveEntities.get(i);
+				aliveEntities.remove(i);
+			}else{
+				Virus virus = (Virus) aliveEntities.get(i);
+				viri.add(virus);
 			}
 		}
 		cellyManager = new CellyManager(this, celly);
+		virusManager = new VirusManager(this, viri, celly);
+	}
+	
+	public void runAI(){
+		virusManager.sampleRandomAction();
 	}
 
 	public boolean checkCoordsWithinMap(Point point){

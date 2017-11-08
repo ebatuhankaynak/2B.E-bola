@@ -8,8 +8,9 @@ public class EntityFactory{
 	public Entity createObject(char c){
 		switch(c){
 			case 'T': return new Entity();
-			case 'P': return new Celly();
+			case 'C': return new Celly();
 			case 'V': return new Virus();
+			case 'P': return new Portal();
 			default:  return null;
 		}
 	}

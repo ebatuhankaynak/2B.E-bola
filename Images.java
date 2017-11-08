@@ -6,5 +6,6 @@
 public enum Images{
 	Entity,
 	Celly,
-	Virus
+	Virus,
+	Portal
 }

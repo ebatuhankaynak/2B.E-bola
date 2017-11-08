@@ -41,6 +41,7 @@ public class GameEngine implements InputListener{
 		new Timer().schedule(new TimerTask(){
 			public void run() {
 				entityManager.evaluateInput(inputManager.keys);
+				entityManager.runAI();
 				gamePanel.update(map.currentRoom);
 			}
 		}, 0, 4);
