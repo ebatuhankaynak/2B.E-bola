@@ -1,7 +1,7 @@
 # To do
 - [ ] Evaluate: Is EntityManager needed(as it is right now)
 
-##Features
+## Features
 - [ ] Virus Image
 - [ ] Portals
 - [ ] Chests and keys
