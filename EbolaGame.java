@@ -5,6 +5,9 @@
 */
 import javax.swing.*;
 
+import engine.*;
+import gui.*;
+
 public class EbolaGame{
 	public static void main(String[] args){
 		EbolaFrame frame = new EbolaFrame();
