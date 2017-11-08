@@ -8,8 +8,10 @@ import java.awt.event.*;
 public class CellyManager{
 	
 	private Celly celly;
+	private EntityManager entityManager;
 	
-	public CellyManager(Celly celly){
+	public CellyManager(EntityManager entityManager, Celly celly){
+		this.entityManager = entityManager;
 		this.celly = celly;
 	}
 	
@@ -24,6 +26,7 @@ public class CellyManager{
 	40 - Down
 	*/
 	
+	//stuck when one axis is zero
 	public void evaluateInput(boolean[] keys){
 		if(keys[0]){
 			celly.setVelocityX(-5);
@@ -47,11 +50,10 @@ public class CellyManager{
 		//Point point = calculateNewCoordinates(key);
 		if(checkIfValidMove(point)){
 			celly.setPoint(point);
-			System.out.println(point);
+			//System.out.println(point);
 		}
 	}
 	
-	/*
 	public void evaluateInput(int pressState, int key){
 		if (pressState == 1){
 			if (key == KeyEvent.VK_LEFT) {
@@ -91,35 +93,13 @@ public class CellyManager{
 			System.out.println(point);
 		}
 	}
-	*/
 	
 	
 	public boolean checkIfValidMove(Point point){
-		/*
-		boolean withinMap = checkCoordsWithinMap(point);
-		boolean noObstacle = false;
-		if(withinMap){
-			noObstacle = checkNoObstacle(point);
-		}
-		
-		System.out.println(withinMap);
-		System.out.println(noObstacle);
-		return withinMap && noObstacle;
-		*/
-		return true;
+		boolean withinMap = entityManager.checkCoordsWithinMap(point);
+		//boolean noObstacle = checkNoObstacle(point);
+		return withinMap;// && noObstacle;
 	}
-	
-	/*
-	private boolean checkCoordsWithinMap(Point point){
-		int x = point.x;
-		int y = point.y;
-		return (y >= 0 && y < Map.NUM_ROWS && x >= 0 && x < Map.NUM_COLS);
-	}
-	
-	private boolean checkNoObstacle(Point point){
-		return !(mapPanel.getTiles()[point.x][point.y] instanceof ObstacleTile);
-	}
-	*/
 	
 	public Point calculateNewCoordinates(int keyCode){
 		Point point = celly.getPoint();

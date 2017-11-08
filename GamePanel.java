@@ -85,8 +85,8 @@ public class GamePanel extends JLayeredPane{
 					int x = i * rectWidth;
 					int y = j * rectHeight;
 					
-					Entity Entity = room.Entitys[i][j];
-					if(!(Entity instanceof Celly)){
+					Entity Entity = room.entities[i][j];
+					if(!(Entity instanceof Alive)){
 						String className = Entity.getClass().getSimpleName();
 						Images enumVal = Images.valueOf(className);
 						g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
@@ -114,12 +114,10 @@ public class GamePanel extends JLayeredPane{
 			
 			for (int i = 0; i < ROW; i++) {
 				for (int j = 0; j < COL; j++) {
-					Entity entity = room.Entitys[i][j];
-					if(entity instanceof Celly){
-						//System.out.println("Gona draw celi");
-						int x = ((Celly) entity).getPoint().getX(); // 60.0 * rectWidth;
-						int y = ((Celly) entity).getPoint().getY(); // 60.0 * rectHeight;
-						//System.out.println("x: " + x + "y: " + y);
+					Entity entity = room.entities[i][j];
+					if(entity instanceof Alive){
+						int x = ((Alive) entity).getPoint().getX(); // 60.0 * rectWidth;
+						int y = ((Alive) entity).getPoint().getY(); // 60.0 * rectHeight;
 						String className = entity.getClass().getSimpleName();
 						Images enumVal = Images.valueOf(className);
 						g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);

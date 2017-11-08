@@ -5,5 +5,6 @@
 */
 public enum Images{
 	Entity,
-	Celly
+	Celly,
+	Virus
 }

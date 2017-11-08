@@ -5,9 +5,15 @@
 */
 public class Room{
 
-	Entity[][] Entitys;
+	Entity[][] entities;
 	
-	public Room(Entity[][] Entitys){
-		this.Entitys = Entitys;
+	public Room(Entity[][] entities){
+		this.entities = entities;	
+		System.out.println();
+			
+	}
+	
+	public Entity[][] getEntities(){
+		return entities;
 	}
 }

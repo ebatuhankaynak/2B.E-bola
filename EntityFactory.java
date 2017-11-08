@@ -9,6 +9,7 @@ public class EntityFactory{
 		switch(c){
 			case 'T': return new Entity();
 			case 'P': return new Celly();
+			case 'V': return new Virus();
 			default:  return null;
 		}
 	}

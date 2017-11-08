@@ -31,7 +31,7 @@ public class GameEngine implements InputListener{
 		map = new Map(entityGenerator.getEntities());
 		
 		resourceReader = new ResourceReader();
-		entityManager = new EntityManager(entityGenerator.getCelly()); //TURN THIS INTO ALIVE
+		entityManager = new EntityManager(map.currentRoom.getEntities(), entityGenerator.getAliveEntities()); //TURN THIS INTO ALIVE
 		
 		inputManager = new InputManager();
 		inputManager.addListener(this);

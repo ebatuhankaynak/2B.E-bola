@@ -20,4 +20,9 @@ public class Entity{
 	public BufferedImage getImage(){
 		return image;
 	}
+	
+	@Override
+	public String toString(){
+		return this.getClass().getSimpleName();
+	}
 }

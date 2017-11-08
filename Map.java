@@ -8,10 +8,10 @@ public class Map{
 	Room[] rooms;
 	Room currentRoom;
 	
-	public Map(Entity[][][] Entitys){
-		rooms = new Room[Entitys.length];
-		for(int i = 0; i < Entitys.length; i++){
-			rooms[i] = new Room(Entitys[i]);
+	public Map(Entity[][][] entities){
+		rooms = new Room[entities.length];
+		for(int i = 0; i < entities.length; i++){
+			rooms[i] = new Room(entities[i]);
 		}
 		currentRoom = rooms[0];
 	}
