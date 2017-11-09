@@ -9,10 +9,18 @@ public class EntityFactory{
 
 	public Entity createObject(char c){
 		switch(c){
-			case 'T': return new Entity();
 			case 'C': return new Celly();
-			case 'V': return new Virus();
+			case 'T': return new Entity();
+			//case 'R': return new RockTile();
+			//case 'G': return new GrassTile();
+			//case 'W': return new WaterTile();
 			case 'P': return new Portal();
+			//case 'O': return new OpenChest();
+			//case 'L': return new LockedChest();
+			case 'V': return new Virus();
+			//case 'V': return new ChaserVirus();
+			//case 'S': return new ShooterVirus();
+			//case 'E': return new EbolaVirus();
 			default:  return null;
 		}
 	}
