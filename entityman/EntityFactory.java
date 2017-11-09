@@ -21,6 +21,7 @@ public class EntityFactory{
 			//case 'V': return new ChaserVirus();
 			//case 'S': return new ShooterVirus();
 			//case 'E': return new EbolaVirus();
+			//case 'K': return new Key();
 			default:  return null;
 		}
 	}
