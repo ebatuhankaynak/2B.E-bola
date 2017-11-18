@@ -6,4 +6,7 @@
 package entity;
 public class Virus extends Alive{
 
+	public Virus(){
+		this.movementSpeedModifier = 0; //Help me
+	}
 }

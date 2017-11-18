@@ -4,6 +4,9 @@
 * Created: 11/07/2017 
 */
 package entity;
+
+import java.awt.Rectangle;
+
 public class Alive extends Entity{
 	private Point point;
 	protected int movementSpeedModifier;
@@ -11,6 +14,11 @@ public class Alive extends Entity{
 	
 	private int velocityX;
 	private int velocityY;
+	
+	public Alive(){
+		super();
+		//setEffectWindow(new Rectangle(point.getX(), point.getY(), RECT / 2, RECT / 2));
+	}
 	
 	public void setVelocityX(int velocityX){
 		this.velocityX = velocityX * movementSpeedModifier;

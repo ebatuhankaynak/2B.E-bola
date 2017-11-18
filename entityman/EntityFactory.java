@@ -4,7 +4,9 @@
 * Created: 10/14/2017 
 */
 package entityman;
+
 import entity.*;
+
 public class EntityFactory{
 
 	public Entity createObject(char c){

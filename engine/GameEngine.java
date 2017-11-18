@@ -29,16 +29,20 @@ public class GameEngine implements InputListener{
 	private ResourceReader resourceReader;
 	
 	private InputManager inputManager;
-	private MapManager mapManager;
+	private MapReader mapReader;
 	private	EntityGenerator entityGenerator;
 	
 	public GameEngine(){
-		mapManager = new MapManager();
-		entityGenerator = new EntityGenerator(mapManager.rooms);
-		map = new Map(entityGenerator.getEntities());
+		mapReader = new MapReader();
+		entityGenerator = new EntityGenerator(mapReader.rooms, mapReader.portals);
+		
+		map = new Map(entityGenerator.getEntities(), entityGenerator.getPortalMap());
 		
 		resourceReader = new ResourceReader();
-		entityManager = new EntityManager(map.getCurrentRoom().getEntities(), entityGenerator.getAliveEntities()); //TURN THIS INTO ALIVE
+		
+		Room currentRoom = map.getCurrentRoom();
+		entityManager = new EntityManager(currentRoom.getEntities(), 
+							currentRoom.getAliveEntities(), currentRoom.getInteractableEntities());
 		
 		inputManager = new InputManager();
 		inputManager.addListener(this);
@@ -51,7 +55,7 @@ public class GameEngine implements InputListener{
 				entityManager.runAI();
 				gamePanel.update(map.getCurrentRoom());
 			}
-		}, 0, 4);
+		}, 0, 40);
 	}
 	
 	public void inputRecieved(int pressState, int key){

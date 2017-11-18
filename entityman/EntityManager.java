@@ -16,12 +16,17 @@ public class EntityManager{
 	private VirusManager virusManager;
 	private Entity[][] entities;
 	
+	private ArrayList<Interactable> interactableEntities;
+	
 	private final int ROW = GameEngine.ROW;
 	private final int COL = GameEngine.COL;
 	private final int PIXELS = GameEngine.PIXELS * GameEngine.PIXEL_SCALE;
 	
-	public EntityManager(Entity[][] entities, ArrayList<Alive> aliveEntities){
+	//disbah ala hırrrrrr
+	
+	public EntityManager(Entity[][] entities, ArrayList<Alive> aliveEntities, ArrayList<Interactable> interactableEntities){
 		this.entities = entities;
+		this.interactableEntities = interactableEntities;
 		Celly celly = null;
 		ArrayList<Virus> viri = new ArrayList<Virus>();
 		for(int i = 0; i < aliveEntities.size(); i++){
@@ -35,6 +40,7 @@ public class EntityManager{
 		}
 		cellyManager = new CellyManager(this, celly);
 		virusManager = new VirusManager(this, viri, celly);
+		System.out.println(interactableEntities);
 	}
 	
 	public void runAI(){
@@ -58,7 +64,31 @@ public class EntityManager{
 	}
 	
 	public void evaluateInput(boolean[] keys){
+		Interactable interactable = checkInteraction();
+		
+		if (interactable != null){
+			System.out.println(interactable);
+		}else{
+			cellyManager.evaluateInput(keys);
+		}
 		cellyManager.evaluateInput(keys);
+	}
+	
+	private Interactable checkInteraction(){
+		boolean interaction = false;
+		Interactable interactable = null;
+		for(int i = 0; i < interactableEntities.size(); i++){
+			interaction = cellyManager.checkInteraction(interactableEntities.get(i).getEffectWindow());
+			if(interaction){
+				interactable = interactableEntities.get(i);
+				if(interactable instanceof Portal){
+					//NOTIFY
+				}
+				break;
+			}
+		}
+		System.out.println();
+		return interactable;
 	}
 	
 	public void update(){

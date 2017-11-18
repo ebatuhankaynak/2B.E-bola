@@ -13,15 +13,16 @@ import java.util.ArrayList;
 
 import engine.*;
 
-public class MapManager{
+public class MapReader{
 	
 	//public static final String MAP_FOLDER_PATH = "";
-	private final int ROW = GameEngine.ROW;//10; //GameEngine.ROW;
-	private final int COL = GameEngine.COL;//10; //GameEngine.COL;
+	private final int ROW = GameEngine.ROW;
+	private final int COL = GameEngine.COL;
 	
 	public String[][] rooms;
+	public String[] portals;
 	
-	public MapManager(){
+	public MapReader(){
 		
 		//Read save file to determine which level to load
 		String level = "";
@@ -39,9 +40,10 @@ public class MapManager{
 		//No save file??
 		
 		String roomPath = "Maps/" + level;
-		int roomCount = 3; //HARDCODED
+		int roomCount = new File(roomPath).list().length;
 		
-		rooms = new String[3][ROW];
+		rooms = new String[roomCount][ROW];
+		portals = new String[roomCount];
 		
 		//Find the corresponding level folder and get all the rooms
 		File file;
@@ -52,32 +54,17 @@ public class MapManager{
 				file = new File(roomPath + "/R" + (i + 1) + ".txt");
 				bf = new BufferedReader(new FileReader(file));
 				int lineNum = 0;
-				while ((line = bf.readLine()) != null) {
+				while (lineNum != ROW) { //(line = bf.readLine()) != null
+					line = bf.readLine();
 					rooms[i][lineNum] = line;
 					lineNum++;
 				}
+				line = bf.readLine();
+				portals[i] = line;
+				
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
-		/*
-		File levelDir = new File("Maps/" + level);
-		if (levelDir.exists()){
-			try {
-				File file = new File("R1.txt");
-				BufferedReader bf = new BufferedReader(new FileReader(file));
-				String line = "";
-				while ((line = bf.readLine()) != null) {
-					System.out.println(line);
-					level = line;
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}else{
-			//Missing game files
-		}
-		*/
 	}
 }

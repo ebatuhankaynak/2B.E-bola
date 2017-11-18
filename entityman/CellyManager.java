@@ -4,7 +4,10 @@
 * Created: 11/03/2017 
 */
 package entityman;
+
 import java.awt.event.*;
+import java.awt.Rectangle;
+
 import entity.*;
 
 public class CellyManager{
@@ -48,12 +51,15 @@ public class CellyManager{
 		
 		Point cp = celly.getPoint();
 		Point point = new Point(cp.getX() + celly.getVelocityX(), cp.getY() + celly.getVelocityY());
-		
-		//Point point = calculateNewCoordinates(key);
+
 		if(checkIfValidMove(point)){
 			celly.setPoint(point);
 			//System.out.println(point);
 		}
+	}
+	
+	public boolean checkInteraction(EffectWindow effectWindow){
+		return effectWindow.contains(celly.getPoint());
 	}
 	
 	public void evaluateInput(int pressState, int key){
