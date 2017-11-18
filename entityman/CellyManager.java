@@ -58,9 +58,12 @@ public class CellyManager{
 		}
 	}
 	
+<<<<<<< HEAD:entityman/CellyManager.java
 	public boolean checkInteraction(EffectWindow effectWindow){
 		return effectWindow.contains(celly.getPoint());
 	}
+=======
+>>>>>>> 4eabcf60abad2a4c627b42f31193242c4874b296:CellyManager.java
 	
 	public void evaluateInput(int pressState, int key){
 		if (pressState == 1){
@@ -101,6 +104,10 @@ public class CellyManager{
 			System.out.println(point);
 		}
 	}
+<<<<<<< HEAD:entityman/CellyManager.java
+=======
+	
+>>>>>>> 4eabcf60abad2a4c627b42f31193242c4874b296:CellyManager.java
 	
 	
 	public boolean checkIfValidMove(Point point){
