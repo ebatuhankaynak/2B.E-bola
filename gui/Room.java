@@ -25,12 +25,24 @@ public class Room{
 				Entity entity = entities[r][c];
 				if(entity instanceof Alive){
 					aliveEntities.add((Alive) entity);
+					System.out.println("Here I am!: " + (Alive) entity);
 				}else if(entity instanceof Interactable){
 					interactableEntities.add((Interactable) entity);
 				}
 			}
 		}
 			
+	}
+	
+	public Celly findCelly(){
+		Celly celly = null;
+		for(Alive alive : aliveEntities){
+			if(alive instanceof Celly){
+				celly = (Celly) alive;
+				break;
+			}
+		}
+		return celly;
 	}
 	
 	public ArrayList<Alive> getAliveEntities(){

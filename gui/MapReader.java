@@ -39,7 +39,7 @@ public class MapReader{
 		//Close reader??
 		//No save file??
 		
-		String roomPath = "Maps/" + level;
+		String roomPath = "../Maps/" + level;
 		int roomCount = new File(roomPath).list().length;
 		
 		rooms = new String[roomCount][ROW];

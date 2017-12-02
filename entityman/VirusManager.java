@@ -19,12 +19,17 @@ public class VirusManager{
 		this.celly = celly;
 	}
 	
+	public void update(ArrayList<Virus> viri){
+		this.viri = viri;
+	}
+	
 	public void sampleRandomAction(){
 		for(int i = 0; i < viri.size(); i++){
 			chasePlayer(viri.get(i));
 		}
 	}
 	
+	//Use velocity
 	private void chasePlayer(Virus virus){
 		Point cp = celly.getPoint();
 		Point vp = virus.getPoint();

@@ -17,12 +17,20 @@ public class Map{
 	public Map(Entity[][][] entities, HashMap<Portal, Integer> portalMap){
 		rooms = new Room[entities.length];
 		for(int i = 0; i < entities.length; i++){
+			System.out.println(i);
 			rooms[i] = new Room(entities[i]);
 		}
 		currentRoom = rooms[0];
 		for(Portal p : portalMap.keySet()){
 			p.setDestination(rooms[(int)(portalMap.get(p)) - 1]);
 		}
+	}
+	
+	public void setCurrentRoom(Room room){
+		Celly celly = currentRoom.findCelly();
+		room.getAliveEntities().add(celly);
+		currentRoom.getAliveEntities().remove(celly);
+		this.currentRoom = room;
 	}
 	
 	public Room getCurrentRoom(){

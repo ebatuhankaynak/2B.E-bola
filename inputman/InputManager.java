@@ -46,7 +46,7 @@ public class InputManager implements KeyListener{
     
     public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		System.out.println("Input Recep: " + key);
+		//System.out.println("Input Recep: " + key);
 		if(key >= 37 && key <= 40){
 			keys[key - 37] = true;
 		}

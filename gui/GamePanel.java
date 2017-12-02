@@ -74,6 +74,12 @@ public class GamePanel extends JLayeredPane{
 			revalidate();
 			repaint();
 		}
+		
+		public void draw(Graphics g, Entity entity, int x, int y){
+			String className = entity.getClass().getSimpleName();
+			Images enumVal = Images.valueOf(className);
+			g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
+		}
 	}
 	
 	private class StaticPanel extends Layer{
@@ -92,6 +98,7 @@ public class GamePanel extends JLayeredPane{
 					int x = i * rectWidth;
 					int y = j * rectHeight;
 					
+					//wat iz dis batu???
 					Entity Entity = room.entities[i][j];
 					if(!(Entity instanceof Alive)){
 						String className = Entity.getClass().getSimpleName();
@@ -119,6 +126,16 @@ public class GamePanel extends JLayeredPane{
 			int rectWidth = getWidth() / COL;
 			int rectHeight = getHeight() / ROW;
 			
+			ArrayList<Alive> alives = room.getAliveEntities();
+			
+			for (int i = 0; i < alives.size(); i++) {
+					Alive alive = alives.get(i);
+					int x = alive.getPoint().getX(); // 60.0 * rectWidth;
+					int y = alive.getPoint().getY(); // 60.0 * rectHeight;
+					draw(g, alive, x, y);
+			}
+			
+			/*
 			for (int i = 0; i < ROW; i++) {
 				for (int j = 0; j < COL; j++) {
 					Entity entity = room.entities[i][j];
@@ -131,6 +148,7 @@ public class GamePanel extends JLayeredPane{
 					}
 				}
 			}
+			*/
 		}
 	}
 }

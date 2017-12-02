@@ -9,13 +9,15 @@ package engine;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import entityman.*;
 import gui.*;
 import inputman.*;
 import reader.*;
+import entity.*;
 
-public class GameEngine implements InputListener{
+public class GameEngine implements InputListener, EntityEventListener{
 	
 	public static final int ROW = 10;
 	public static final int COL = 10;
@@ -41,11 +43,16 @@ public class GameEngine implements InputListener{
 		resourceReader = new ResourceReader();
 		
 		Room currentRoom = map.getCurrentRoom();
+		
 		entityManager = new EntityManager(currentRoom.getEntities(), 
 							currentRoom.getAliveEntities(), currentRoom.getInteractableEntities());
+		entityManager.addListener(this);
 		
 		inputManager = new InputManager();
 		inputManager.addListener(this);
+		
+		
+		
 		gamePanel = new GamePanel(inputManager, map.getCurrentRoom(), resourceReader.getImages());
 		gamePanel.requestFocus();
 		
@@ -54,8 +61,19 @@ public class GameEngine implements InputListener{
 				entityManager.evaluateInput(inputManager.getKeys());
 				entityManager.runAI();
 				gamePanel.update(map.getCurrentRoom());
+				
 			}
 		}, 0, 40);
+	}
+	
+	public void onEntityEvent(Interactable interactable){
+		if(interactable instanceof Portal){
+			Portal portal = (Portal) interactable;
+			Room room = portal.getDestination();
+			map.setCurrentRoom(room);
+			entityManager.update(room.getEntities(), room.getAliveEntities(), room.getInteractableEntities());
+			//gamePanel.update(room);
+		}
 	}
 	
 	public void inputRecieved(int pressState, int key){
