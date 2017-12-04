@@ -79,9 +79,9 @@ public class EntityManager{
 		return true;							//!!!HARDCODED!!!
 	}
 	
-	public void evaluateInput(int pressState, int key){
+	/* public void evaluateInput(int pressState, int key){
 		cellyManager.evaluateInput(pressState, key);
-	}
+	} */
 	
 	public void evaluateInput(boolean[] keys){
 		Interactable interactable = checkInteraction();

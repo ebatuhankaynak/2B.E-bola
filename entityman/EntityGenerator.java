@@ -46,6 +46,7 @@ public class EntityGenerator{
 				String row = text[i][r];
 				for(int c = 0; c < COL; c++){
 					Entity entity = entityFactory.createObject(row.charAt(c));
+					System.out.println(entity);
 					entity.setPoint(new Point(c * 60, r * 60)); 	//HARDCODED
 					entities[i][r][c] = entity; 	//change this (same with gamepanel)
 					if(entity instanceof Alive){
@@ -58,6 +59,7 @@ public class EntityGenerator{
 						interactableEntities.add((Portal) entity);
 					}
 				}
+				System.out.println();
 			}
 		}
 	}

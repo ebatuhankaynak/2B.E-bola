@@ -11,6 +11,16 @@ public class Portal extends Interactable{
 
 	private Room destination;
 	
+	private Lock lock;
+	
+	public Portal(){
+		this.lock = null;
+	}
+
+	public Portal(Lock lock){
+		this.lock = lock;
+	}
+	
 	public void setDestination(Room destination){
 		this.destination = destination;
 	}

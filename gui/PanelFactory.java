@@ -8,10 +8,6 @@ package gui;
 import javax.swing.*;
 
 public class PanelFactory{
-
-	public PanelFactory(){
-		
-	}
 	
 	public JComponent createPanel(PanelType panelType){
 		switch(panelType){

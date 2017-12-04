@@ -58,7 +58,7 @@ public class CellyManager{
 		return effectWindow.contains(celly.getPoint());
 	}
 	
-	public void evaluateInput(int pressState, int key){
+	/* public void evaluateInput(int pressState, int key){
 		if (pressState == 1){
 			if (key == KeyEvent.VK_LEFT) {
 				celly.setVelocityX(-5);
@@ -96,7 +96,7 @@ public class CellyManager{
 			celly.setPoint(point);
 			System.out.println(point);
 		}
-	}
+	} */
 	
 	public boolean checkIfValidMove(Point point){
 		boolean withinMap = entityManager.checkCoordsWithinMap(point);
@@ -104,7 +104,7 @@ public class CellyManager{
 		return withinMap;// && noObstacle;
 	}
 	
-	public Point calculateNewCoordinates(int keyCode){
+/* 	public Point calculateNewCoordinates(int keyCode){
 		Point point = celly.getPoint();
 		int x = point.getX();
 		int y = point.getY();
@@ -123,5 +123,5 @@ public class CellyManager{
 				break;
 		 }
 		 return new Point(x, y);
-	}
+	} */
 }

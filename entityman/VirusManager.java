@@ -29,7 +29,6 @@ public class VirusManager{
 		}
 	}
 	
-	//Use velocity
 	private void chasePlayer(Virus virus){
 		Point cp = celly.getPoint();
 		Point vp = virus.getPoint();
@@ -38,22 +37,26 @@ public class VirusManager{
 		int dX = x - cp.getX();
 		int dY = y - cp.getY();
 		
-		int newX = x;
-		Point p = null;
 		if (dX > 0){
-			p = new Point(x - 1, y);
-			newX = x - 1;
+			virus.setVelocityX(-5);
 		}else if (dX < 0){
-			p = new Point(x + 1, y);
-			newX = x + 1;
+			virus.setVelocityX(5);
+		}else{
+			virus.setVelocityX(0);
 		}
 		
 		if (dY > 0){
-			p = new Point(newX, y - 1);
+			virus.setVelocityY(-5);
 		}else if (dY < 0){
-			p = new Point(newX, y + 1);
+			virus.setVelocityY(5);
+		}else{
+			virus.setVelocityY(0);
 		}
-		virus.setPoint(p);
+		
+		if(virus.getVelocityX() != 0 && virus.getVelocityY() != 0){
+			virus.setVelocityX((virus.getVelocityX() / 5) * 3);
+			virus.setVelocityY((virus.getVelocityY() / 5) * 3);
+		}
+		virus.setPoint(new Point(vp.getX() + virus.getVelocityX(), vp.getY() + virus.getVelocityY()));
 	}
-	
 }

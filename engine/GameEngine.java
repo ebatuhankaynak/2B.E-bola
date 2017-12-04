@@ -73,6 +73,8 @@ public class GameEngine implements InputListener, EntityEventListener{
 			map.setCurrentRoom(room);
 			entityManager.update(room.getEntities(), room.getAliveEntities(), room.getInteractableEntities());
 			//gamePanel.update(room);
+		}else if(interactable instanceof Key){
+			//entityManager.replace
 		}
 	}
 	

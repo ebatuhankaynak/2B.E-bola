@@ -93,6 +93,15 @@ public class GamePanel extends JLayeredPane{
 			int rectWidth = getWidth() / COL;
 			int rectHeight = getHeight() / ROW;
 			
+			ArrayList<Interactable> interactables = room.getInteractableEntities();
+			
+			for (int i = 0; i < interactables.size(); i++) {
+				Interactable interactable = interactables.get(i);
+				int x = interactable.getPoint().getX(); // 60.0 * rectWidth;
+				int y = interactable.getPoint().getY(); // 60.0 * rectHeight;
+				draw(g, interactable, x, y);
+			}
+			
 			for (int i = 0; i < ROW; i++) {
 				for (int j = 0; j < COL; j++) {
 					int x = i * rectWidth;
@@ -100,7 +109,7 @@ public class GamePanel extends JLayeredPane{
 					
 					//wat iz dis batu???
 					Entity Entity = room.entities[i][j];
-					if(!(Entity instanceof Alive)){
+					if(!(Entity instanceof Alive) && !(Entity instanceof Alive)){
 						String className = Entity.getClass().getSimpleName();
 						Images enumVal = Images.valueOf(className);
 						g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
@@ -134,21 +143,6 @@ public class GamePanel extends JLayeredPane{
 					int y = alive.getPoint().getY(); // 60.0 * rectHeight;
 					draw(g, alive, x, y);
 			}
-			
-			/*
-			for (int i = 0; i < ROW; i++) {
-				for (int j = 0; j < COL; j++) {
-					Entity entity = room.entities[i][j];
-					if(entity instanceof Alive){
-						int x = ((Alive) entity).getPoint().getX(); // 60.0 * rectWidth;
-						int y = ((Alive) entity).getPoint().getY(); // 60.0 * rectHeight;
-						String className = entity.getClass().getSimpleName();
-						Images enumVal = Images.valueOf(className);
-						g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
-					}
-				}
-			}
-			*/
 		}
 	}
 }
