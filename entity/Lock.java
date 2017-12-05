@@ -9,7 +9,15 @@ public class Lock{
 	
 	private Key key;
 	
+	public Lock(){
+		this.key = null;
+	}
+	
 	public Lock(Key key){
+		this.key = key;
+	}
+	
+	public void setKey(Key key){
 		this.key = key;
 	}
 }

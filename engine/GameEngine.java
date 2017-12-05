@@ -36,9 +36,9 @@ public class GameEngine implements InputListener, EntityEventListener{
 	
 	public GameEngine(){
 		mapReader = new MapReader();
-		entityGenerator = new EntityGenerator(mapReader.rooms, mapReader.portals);
+		entityGenerator = new EntityGenerator(mapReader.rooms, mapReader.portals, mapReader.keys);
 		
-		map = new Map(entityGenerator.getEntities(), entityGenerator.getPortalMap());
+		map = new Map(entityGenerator.getEntities(), entityGenerator.getPortalMap(), entityGenerator.getKeyMap());
 		
 		resourceReader = new ResourceReader();
 		
@@ -74,6 +74,7 @@ public class GameEngine implements InputListener, EntityEventListener{
 			entityManager.update(room.getEntities(), room.getAliveEntities(), room.getInteractableEntities());
 			//gamePanel.update(room);
 		}else if(interactable instanceof Key){
+			//entityManager.obtainItem(key);
 			//entityManager.replace
 		}
 	}
