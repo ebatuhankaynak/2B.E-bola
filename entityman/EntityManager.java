@@ -66,6 +66,10 @@ public class EntityManager{
 	public void runAI(){
 		virusManager.sampleRandomAction();
 	}
+	
+	public void obtainItem(Interactable interactable){
+		cellyManager.obtainItem(interactable);
+	}
 
 	public boolean checkCoordsWithinMap(Point point){
 		int x = point.getX();

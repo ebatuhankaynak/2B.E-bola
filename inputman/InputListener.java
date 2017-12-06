@@ -8,5 +8,5 @@ package inputman;
 import java.awt.event.*;
 
 public interface InputListener{
-	void inputRecieved(int pressState, int key);
+	void inputRecieved(boolean[] keys);
 }

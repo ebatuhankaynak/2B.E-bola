@@ -35,6 +35,10 @@ public class Map{
 		}
 	}
 	
+	public void replace(Interactable interactable){
+		currentRoom.replace(interactable);
+	}
+	
 	public void setCurrentRoom(Room room){
 		Celly celly = currentRoom.findCelly();
 		room.getAliveEntities().add(celly);

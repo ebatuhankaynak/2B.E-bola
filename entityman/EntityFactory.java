@@ -13,6 +13,7 @@ public class EntityFactory{
 			//case 'W': return new WaterTile();
 			case 'P': return new Portal();
 			case 'L': return new Chest();
+			case 'O': return new OpenChest();
 			case 'V': return new Virus();
 			//case 'V': return new ChaserVirus();
 			//case 'S': return new ShooterVirus();

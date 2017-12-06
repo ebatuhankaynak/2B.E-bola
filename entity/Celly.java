@@ -12,4 +12,8 @@ public class Celly extends Alive{
 		this.movementSpeedModifier = 1;
 		this.inventory = new Inventory();
 	}
+	
+	public Inventory getInventory(){
+		return inventory;
+	}
 }

@@ -51,8 +51,6 @@ public class GameEngine implements InputListener, EntityEventListener{
 		inputManager = new InputManager();
 		inputManager.addListener(this);
 		
-		
-		
 		gamePanel = new GamePanel(inputManager, map.getCurrentRoom(), resourceReader.getImages());
 		gamePanel.requestFocus();
 		
@@ -74,18 +72,17 @@ public class GameEngine implements InputListener, EntityEventListener{
 			entityManager.update(room.getEntities(), room.getAliveEntities(), room.getInteractableEntities());
 			//gamePanel.update(room);
 		}else if(interactable instanceof Key){
-			//entityManager.obtainItem(key);
-			//entityManager.replace
+			entityManager.obtainItem(interactable);
+			map.replace(interactable);
+		}
+		else if(interactable instanceof Chest){
+			//entityManager.obtainItem(interactable);
+			map.replace(interactable);
 		}
 	}
 	
-	public void inputRecieved(int pressState, int key){
-		//check şf non celly button
-		
-		//entityManager.evaluateInput(pressState, key);
-		//entityManager.evaluateInput(inputManager.keys);
-		//gamePanel.update(map.getCurrentRoom());
-		//System.out.println("Input Recep: " + key);
+	public void inputRecieved(boolean[] keys){
+		//entityManager.evaluateInput(keys);
 	}
 	
 	public GamePanel getGamePanel(){

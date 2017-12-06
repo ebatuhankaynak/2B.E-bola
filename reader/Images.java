@@ -12,5 +12,6 @@ public enum Images{
 	Portal,
 	Chest,
 	Ebola,
-	Key
+	Key,
+	OpenChest
 }

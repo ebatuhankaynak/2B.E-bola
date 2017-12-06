@@ -21,8 +21,6 @@ public class EntityGenerator{
 	
 	private Celly celly;
 	
-	private ArrayList<Alive> aliveEntities;
-	private ArrayList<Interactable> interactableEntities;
 	private HashMap<Portal, Integer> portalMap;
 	private HashMap<Key, int[]> keyMap;
 	
@@ -34,8 +32,6 @@ public class EntityGenerator{
 	public EntityGenerator(String[][] text, String[] portalText, String[] keyText){
 		entityFactory = new EntityFactory();
 		entities = new Entity[roomCount][ROW][COL];
-		//aliveEntities = new ArrayList<Alive>();
-		interactableEntities = new ArrayList<Interactable>();
 		portalMap = new HashMap<>();
 		keyMap = new HashMap<>();
 		generateEntities(text, portalText, keyText);
@@ -55,17 +51,12 @@ public class EntityGenerator{
 				String row = text[i][r];
 				for(int c = 0; c < COL; c++){
 					Entity entity = entityFactory.createObject(row.charAt(c));
-					//System.out.println(entity);
 					entity.setPoint(new Point(c * 60, r * 60)); 	//HARDCODED
 					entities[i][r][c] = entity; 	//change this (same with gamepanel)
-					if(entity instanceof Alive){
-						//Alive alive = (Alive) entity;
-						//aliveEntities.add(alive);
-					}else if (entity instanceof Portal){
+					if (entity instanceof Portal){
 						String ch = "" + portalText[i].charAt(portalCount);
 						portalMap.put((Portal) entity, new Integer(Integer.parseInt(ch)));
 						portalCount++;
-						//interactableEntities.add((Portal) entity);
 					}else if (entity instanceof Key){
 						System.out.println(i);
 						String str = keysOfRoom[keyCount];
@@ -77,7 +68,6 @@ public class EntityGenerator{
 						keyMap.put((Key) entity, nums);
 					}
 				}
-				System.out.println();
 			}
 		}
 	}
@@ -88,14 +78,6 @@ public class EntityGenerator{
 	
 	public HashMap<Key, int[]> getKeyMap(){
 		return keyMap;
-	}
-	
-	public ArrayList<Alive> getAliveEntities(){
-		return aliveEntities;
-	}
-	
-	public ArrayList<Interactable> getInteractableEntities(){
-		return interactableEntities;
 	}
 	
 	public Celly getCelly(){

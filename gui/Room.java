@@ -50,6 +50,22 @@ public class Room{
 		return celly;
 	}
 	
+	public void replace(Interactable interactable){
+		for(int c = 0; c < entities.length; c++){
+			for(int r = 0; r < entities[c].length; r++){
+				Entity entity = entities[r][c];
+				if(entity == interactable){
+					if(entity instanceof Chest){
+						entities[r][c] = new OpenChest();
+					}else{
+						entities[r][c] = new Entity();
+					}
+				}
+			}
+		}
+		interactableEntities.remove(interactable);
+	}
+	
 	public ArrayList<Alive> getAliveEntities(){
 		return aliveEntities;
 	}
