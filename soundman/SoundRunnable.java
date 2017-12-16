@@ -16,7 +16,7 @@ import javax.sound.sampled.SourceDataLine;
 
 public class SoundRunnable implements Runnable{
 	
-	private final int BUFFER_SIZE = 128000;
+    private final int BUFFER_SIZE = 128000;
     private File soundFile;
     private AudioInputStream audioStream;
     private AudioFormat audioFormat;
