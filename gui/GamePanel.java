@@ -99,14 +99,14 @@ public class GamePanel extends JLayeredPane{
 					int y = j * rectHeight;
 					
 					//wat iz dis batu???
-					Entity Entity = room.entities[i][j];
-					if(!(Entity instanceof Alive) && !(Entity instanceof Interactable)){
-						String className = Entity.getClass().getSimpleName();
+					Entity entity = room.entities[i][j];
+					if(!(entity instanceof Alive) && !(entity instanceof Interactable)){
+						String className = entity.getClass().getSimpleName();
 						Images enumVal = Images.valueOf(className);
 						g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
 					}else{
-						Entity = new Entity();
-						String className = Entity.getClass().getSimpleName();
+						entity = new Entity();
+						String className = entity.getClass().getSimpleName();
 						Images enumVal = Images.valueOf(className);
 						g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
 					}

@@ -20,6 +20,8 @@ public class EntityManager{
 	
 	private EntityEventListener listener;
 	
+	private Celly celly;
+	
 	private final int ROW = GameEngine.ROW;
 	private final int COL = GameEngine.COL;
 	private final int PIXELS = GameEngine.PIXELS * GameEngine.PIXEL_SCALE;
@@ -31,7 +33,7 @@ public class EntityManager{
 						ArrayList<Interactable> interactableEntities){
 		this.entities = entities;
 		this.interactableEntities = interactableEntities;
-		Celly celly = null;
+		celly = null;
 		ArrayList<Virus> viri = new ArrayList<Virus>();
 		for(int i = 0; i < aliveEntities.size(); i++){
 			if(aliveEntities.get(i) instanceof Celly){
@@ -118,5 +120,9 @@ public class EntityManager{
 	
 	private void notify(Interactable interactable){
 		listener.onEntityEvent(interactable);
+	}
+	
+	public Celly getCelly(){
+		return celly;
 	}
 }

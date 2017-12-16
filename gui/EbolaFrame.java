@@ -40,7 +40,8 @@ public class EbolaFrame extends JFrame implements MenuButtonListener{
 			//GameEngine gameEngine = new GameEngine((GamePanel)panel);
 			GameEngine gameEngine = new GameEngine();
 			panel = gameEngine.getGamePanel();
-			panel = new GameWithHud((GamePanel)panel);
+			Hud hud = gameEngine.getHud();
+			panel = new GameWithHud((GamePanel)panel, hud);
 		}
 		setContentPane(panel);
 		revalidate();
@@ -49,17 +50,10 @@ public class EbolaFrame extends JFrame implements MenuButtonListener{
 	
 	private class GameWithHud extends JPanel{
 		
-		public GameWithHud(GamePanel gamePanel){
+		public GameWithHud(GamePanel gamePanel, Hud hud){
 			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 			add(gamePanel);
-			add(new Hud());
-		}
-		private class Hud extends JPanel{
-		
-			public Hud(){
-				setPreferredSize(new Dimension(200, 100));
-				add(new JLabel("SA"));
-			}
+			add(hud);
 		}
 	}
 	

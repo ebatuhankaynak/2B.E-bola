@@ -17,7 +17,7 @@ public class Alive extends Entity{
 	
 	public Alive(){
 		super();
-		//setEffectWindow(new Rectangle(point.getX(), point.getY(), RECT / 2, RECT / 2));
+		this.hp = 100;
 	}
 	
 	public void setVelocityX(int velocityX){

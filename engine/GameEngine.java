@@ -16,6 +16,7 @@ import gui.*;
 import inputman.*;
 import reader.*;
 import entity.*;
+import soundman.*;
 
 public class GameEngine implements InputListener, EntityEventListener{
 	
@@ -26,6 +27,7 @@ public class GameEngine implements InputListener, EntityEventListener{
 	
 	private EntityManager entityManager;
 	private GamePanel gamePanel;
+	private Hud hud;
 	
 	private Map map;
 	private ResourceReader resourceReader;
@@ -51,17 +53,27 @@ public class GameEngine implements InputListener, EntityEventListener{
 		inputManager = new InputManager();
 		inputManager.addListener(this);
 		
+		SoundManager soundManager = new SoundManager();
+		soundManager.playSound("audio1.wav");
+		
 		gamePanel = new GamePanel(inputManager, map.getCurrentRoom(), resourceReader.getImages());
 		gamePanel.requestFocus();
+		
+		hud = new Hud();
 		
 		new Timer().schedule(new TimerTask(){
 			public void run() {
 				entityManager.evaluateInput(inputManager.getKeys());
 				entityManager.runAI();
 				gamePanel.update(map.getCurrentRoom());
-				
+				hud.update(entityManager.getCelly());
 			}
 		}, 0, 40);
+		/* new Timer().schedule(new TimerTask(){
+			public void run() {
+				entityManager.damageAI();
+			}
+		}, 0, 500); */
 	}
 	
 	public void onEntityEvent(Interactable interactable){
@@ -79,6 +91,10 @@ public class GameEngine implements InputListener, EntityEventListener{
 			//entityManager.obtainItem(interactable);
 			map.replace(interactable);
 		}
+	}
+	
+	public Hud getHud(){
+		return hud;
 	}
 	
 	public void inputRecieved(boolean[] keys){
