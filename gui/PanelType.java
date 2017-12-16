@@ -7,5 +7,7 @@ public enum PanelType{
 	MENU,
 	PLAY,
 	SETTINGS,
-	EXIT
+	EXIT,
+	MUTE,
+	BACK
 }
