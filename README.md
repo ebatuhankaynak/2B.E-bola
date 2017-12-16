@@ -22,6 +22,6 @@ The game starts with a cell membrane, that doesn't have any organelles in it. In
 
 ## About Deployment
 - [ ] Use Maven or ANT to packaging and deployment
-    - [ ] Package soruce code
+    - [ ] Package source code
     - [ ] Seperate class files and java files
     - [ ] Create a jar
