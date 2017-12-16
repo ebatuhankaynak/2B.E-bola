@@ -1,5 +1,4 @@
 /**
-* @author  Batuhan Kaynak
 * @version 1.2
 * Created: 10/17/2017 
 * inputmanager and panels and entity manager changed //reader not complete // point redundant
