@@ -7,5 +7,6 @@ package gui;
 public enum PanelType{
 	MENU,
 	PLAY,
-	SETTINGS
+	SETTINGS,
+	EXIT
 }
