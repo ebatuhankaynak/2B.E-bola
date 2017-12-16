@@ -39,13 +39,13 @@ public class Hud extends JPanel{
 		statusPanel.add(msLabel);
 		add(statusPanel, BorderLayout.CENTER);
 		
-		JPanel statusPanel = new JPanel();
-		statusPanel.setPreferredSize(new Dimension(100, 100));
-		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.PAGE_AXIS));
-		statusPanel.add(new JLabel("Events"));
-		statusPanel.add(new JLabel(" "));
-		statusPanel.add(eventLabel);
-		add(statusPanel, BorderLayout.EAST);
+		JPanel eventPanel = new JPanel();
+		eventPanel.setPreferredSize(new Dimension(100, 100));
+		eventPanel.setLayout(new BoxLayout(eventPanel, BoxLayout.PAGE_AXIS));
+		eventPanel.add(new JLabel("Events"));
+		eventPanel.add(new JLabel(" "));
+		eventPanel.add(eventLabel);
+		add(eventPanel, BorderLayout.EAST);
 	}
 	
 	public void update(Celly celly){
