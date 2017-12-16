@@ -59,7 +59,6 @@ public class EntityGenerator{
 						portalMap.put((Portal) entity, new Integer(Integer.parseInt(ch)));
 						portalCount++;
 					}else if (entity instanceof Key){
-						System.out.println(i);
 						String str = keysOfRoom[keyCount];
 						keyCount++;
 						String[] numsStr = str.split("-");

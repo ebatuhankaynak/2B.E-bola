@@ -89,18 +89,12 @@ public class EntityManager{
 		Interactable interactable = checkInteraction();
 		
 		if (interactable != null){
-			System.out.println(interactable);
+			//System.out.println(interactable);
 		}else{
 			cellyManager.evaluateInput(keys);
 		}
 		
 		//cellyManager.checkHostile(virusManager.getViri());
-		
-		/* if (virus != null){
-			System.out.println(virus);
-		}else{
-			cellyManager.evaluateInput(keys);
-		} */
 		
 		cellyManager.evaluateInput(keys);
 	}

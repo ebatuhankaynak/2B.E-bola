@@ -34,7 +34,6 @@ public class VirusManager{
 				if(!GameEngine.pause){
 					for(Virus v : viri){
 						v.setHp(v.getHp() - 10);
-						System.out.println(v.getHp());
 						if(v.getHp() == 0){
 							v.setHp(100);
 							junk.remove(v);

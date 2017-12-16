@@ -1,0 +1,1 @@
+cd classes && java EbolaGame

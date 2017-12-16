@@ -18,7 +18,6 @@ public class Map{
 	public Map(Entity[][][] entities, HashMap<Portal, Integer> portalMap, HashMap<Key, int[]> keyMap){
 		rooms = new Room[entities.length];
 		for(int i = 0; i < entities.length; i++){
-			System.out.println(i);
 			rooms[i] = new Room(entities[i]);
 		}
 		currentRoom = rooms[0];
@@ -30,7 +29,6 @@ public class Map{
 			int order = keyMap.get(k)[1];
 			
 			ArrayList<Chest> chests = rooms[roomNum - 1].getChests();
-			System.out.println(chests.get(order - 1));
 			chests.get(order - 1).setKey(k);
 		}
 	}

@@ -34,11 +34,6 @@ public class CellyManager{
 					break;
 				}
 			}
-			if(success){
-				System.out.println("Key in inventory :)");
-			}else{
-				System.out.println("Key inventory full :(");
-			}
 		}
 	}
 	
@@ -81,7 +76,6 @@ public class CellyManager{
 	
 	/* public void checkHostile(ArrayList<Virus> viri){
 		for(Virus v : viri){
-			System.out.println(v);
 			if(v.getEffectWindow().contains(celly.getPoint())){
 				celly.setHp(celly.getHp() - 10);
 				if(celly.getHp() == 0){

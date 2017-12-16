@@ -24,7 +24,6 @@ public class MenuButton extends JButton implements ActionListener{
  public MenuButton(PanelType panelType){
   super();
   String text = panelType.name();
-  System.out.println(text);
   try{
     buttonOnImage = ImageIO.read(new File("../Images/" + "on" + text + ".png"));
     buttonOffImage = ImageIO.read(new File("../Images/" + "off" + text + ".png"));

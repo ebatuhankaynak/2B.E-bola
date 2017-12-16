@@ -30,7 +30,6 @@ public class GamePanel extends JLayeredPane{
 	public GamePanel(InputManager inputManager, Room room, HashMap images){
 		int width = COL * PIXELS;
         int height = ROW * PIXELS;
-		System.out.println(width + "-" + height);
         setPreferredSize(new Dimension(width, height));
 		
 		dynamicPanel = new DynamicPanel(room, images);

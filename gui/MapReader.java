@@ -69,12 +69,6 @@ public class MapReader{
 				line = bf.readLine();
 				keys[i] = line;
 				
-				System.out.println(i);
-				for (String s : keys) {
-					System.out.println(s);
-				}
-				System.out.println();
-				
 			}catch (IOException e) {
 				e.printStackTrace();
 			}

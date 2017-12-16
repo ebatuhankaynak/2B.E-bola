@@ -1,3 +1,5 @@
+package gui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.GridLayout;
@@ -16,7 +18,7 @@ public class SettingsPanel extends JPanel
     setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     setPreferredSize(new Dimension(600, 600));
     try{
-      image = ImageIO.read(new File("C:\\Users\\Deniz\\Desktop\\Proje\\Images\\bg.png"));
+      image = ImageIO.read(new File("../Images/bg.png"));
     }catch(IOException ex){System.out.println("not found");}
     add(Box.createRigidArea(new Dimension(0, 120)));
     addButton(PanelType.MUTE);
