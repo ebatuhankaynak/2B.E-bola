@@ -18,21 +18,27 @@ public class EntityManager{
 	
 	private ArrayList<Interactable> interactableEntities;
 	
+	private EntityEventListener listener;
+	
+	private Celly celly;
+	
 	private final int ROW = GameEngine.ROW;
 	private final int COL = GameEngine.COL;
 	private final int PIXELS = GameEngine.PIXELS * GameEngine.PIXEL_SCALE;
 	
 	//disbah ala hırrrrrr
 	
-	public EntityManager(Entity[][] entities, ArrayList<Alive> aliveEntities, ArrayList<Interactable> interactableEntities){
+	//need to change diagonal movement
+	public EntityManager(Entity[][] entities, ArrayList<Alive> aliveEntities,
+						ArrayList<Interactable> interactableEntities){
 		this.entities = entities;
 		this.interactableEntities = interactableEntities;
-		Celly celly = null;
+		celly = null;
 		ArrayList<Virus> viri = new ArrayList<Virus>();
 		for(int i = 0; i < aliveEntities.size(); i++){
 			if(aliveEntities.get(i) instanceof Celly){
 				celly = (Celly) aliveEntities.get(i);
-				aliveEntities.remove(i);
+				//aliveEntities.remove(i);
 			}else{
 				Virus virus = (Virus) aliveEntities.get(i);
 				viri.add(virus);
@@ -40,11 +46,31 @@ public class EntityManager{
 		}
 		cellyManager = new CellyManager(this, celly);
 		virusManager = new VirusManager(this, viri, celly);
-		System.out.println(interactableEntities);
+	}
+	
+	public void update(Entity[][] entities, ArrayList<Alive> aliveEntities,
+						ArrayList<Interactable> interactableEntities){
+		ArrayList<Virus> viri = new ArrayList<Virus>();
+		for(int i = 0; i < aliveEntities.size(); i++){
+			if(!(aliveEntities.get(i) instanceof Celly)){
+				Virus virus = (Virus) aliveEntities.get(i);
+				viri.add(virus);
+			}
+		}
+		this.entities = entities;
+		this.interactableEntities = interactableEntities;
+		
+		//cellyManager.update(this);
+		virusManager.update(viri);
+		//cellyManager = new CellyManager(this, celly);
 	}
 	
 	public void runAI(){
 		virusManager.sampleRandomAction();
+	}
+	
+	public void obtainItem(Interactable interactable){
+		cellyManager.obtainItem(interactable);
 	}
 
 	public boolean checkCoordsWithinMap(Point point){
@@ -59,9 +85,9 @@ public class EntityManager{
 		return true;							//!!!HARDCODED!!!
 	}
 	
-	public void evaluateInput(int pressState, int key){
+	/* public void evaluateInput(int pressState, int key){
 		cellyManager.evaluateInput(pressState, key);
-	}
+	} */
 	
 	public void evaluateInput(boolean[] keys){
 		Interactable interactable = checkInteraction();
@@ -81,17 +107,22 @@ public class EntityManager{
 			interaction = cellyManager.checkInteraction(interactableEntities.get(i).getEffectWindow());
 			if(interaction){
 				interactable = interactableEntities.get(i);
-				if(interactable instanceof Portal){
-					//NOTIFY
-				}
+				notify(interactable);
 				break;
 			}
 		}
-		System.out.println();
 		return interactable;
 	}
 	
-	public void update(){
-		cellyManager.update();
+	public void addListener(EntityEventListener listener){
+		this.listener = listener;
+	}
+	
+	private void notify(Interactable interactable){
+		listener.onEntityEvent(interactable);
+	}
+	
+	public Celly getCelly(){
+		return celly;
 	}
 }

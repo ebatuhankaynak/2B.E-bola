@@ -9,5 +9,9 @@ public enum Images{
 	Entity,
 	Celly,
 	Virus,
-	Portal
+	Portal,
+	Chest,
+	Ebola,
+	Key,
+	OpenChest
 }

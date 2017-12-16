@@ -19,7 +19,8 @@ public class ResourceReader{
 	
 	public ResourceReader(){
 		hashMap = new HashMap<>();
-		File imagesDir = new File("Images");
+		File imagesDir = new File("../Images");
+		System.out.println(imagesDir);
 		
 		String[] files = imagesDir.list();
 		int pictureCount = files.length;

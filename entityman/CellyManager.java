@@ -20,8 +20,24 @@ public class CellyManager{
 		this.celly = celly;
 	}
 	
-	public void update(){
-		
+	public void obtainItem(Interactable interactable){
+		Inventory inventory = celly.getInventory();
+		if(interactable instanceof Key){
+			Key[] keys = inventory.getKeys();
+			boolean success = false;
+			for(Key key : keys){
+				if(key == null){
+					key = (Key)interactable;
+					success = true;
+					break;
+				}
+			}
+			if(success){
+				System.out.println("Key in inventory :)");
+			}else{
+				System.out.println("Key inventory full :(");
+			}
+		}
 	}
 	
 	/*
@@ -58,82 +74,13 @@ public class CellyManager{
 		}
 	}
 	
-<<<<<<< HEAD:entityman/CellyManager.java
 	public boolean checkInteraction(EffectWindow effectWindow){
 		return effectWindow.contains(celly.getPoint());
 	}
-=======
->>>>>>> 4eabcf60abad2a4c627b42f31193242c4874b296:CellyManager.java
-	
-	public void evaluateInput(int pressState, int key){
-		if (pressState == 1){
-			if (key == KeyEvent.VK_LEFT) {
-				celly.setVelocityX(-5);
-			}
-			else if (key == KeyEvent.VK_RIGHT) {
-				celly.setVelocityX(5);
-			}
-			else if (key == KeyEvent.VK_UP) {
-				celly.setVelocityY(-5);
-			}
-			else if (key == KeyEvent.VK_DOWN) {
-				celly.setVelocityY(5);
-			}
-			
-		}else{
-			if (key == KeyEvent.VK_LEFT) {
-				celly.setVelocityX(0);
-			}
-			else if (key == KeyEvent.VK_RIGHT) {
-				celly.setVelocityX(0);
-			}
-			else if (key == KeyEvent.VK_UP) {
-				celly.setVelocityY(0);
-			}
-			else if (key == KeyEvent.VK_DOWN) {
-				celly.setVelocityY(0);
-			}
-		}
-		
-		Point cp = celly.getPoint();
-		Point point = new Point(cp.getX() + celly.getVelocityX(), cp.getY() + celly.getVelocityY());
-		
-		//Point point = calculateNewCoordinates(key);
-		if(checkIfValidMove(point)){
-			celly.setPoint(point);
-			System.out.println(point);
-		}
-	}
-<<<<<<< HEAD:entityman/CellyManager.java
-=======
-	
->>>>>>> 4eabcf60abad2a4c627b42f31193242c4874b296:CellyManager.java
-	
 	
 	public boolean checkIfValidMove(Point point){
 		boolean withinMap = entityManager.checkCoordsWithinMap(point);
 		//boolean noObstacle = checkNoObstacle(point);
 		return withinMap;// && noObstacle;
-	}
-	
-	public Point calculateNewCoordinates(int keyCode){
-		Point point = celly.getPoint();
-		int x = point.getX();
-		int y = point.getY();
-		switch(keyCode) { 
-			case KeyEvent.VK_UP:
-				y--;
-				break;
-			case KeyEvent.VK_DOWN:
-				y++;
-				break;
-			case KeyEvent.VK_LEFT:
-				x--;
-				break;
-			case KeyEvent.VK_RIGHT :
-				x = x + 5;
-				break;
-		 }
-		 return new Point(x, y);
 	}
 }

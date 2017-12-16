@@ -74,6 +74,12 @@ public class GamePanel extends JLayeredPane{
 			revalidate();
 			repaint();
 		}
+		
+		public void draw(Graphics g, Entity entity, int x, int y){
+			String className = entity.getClass().getSimpleName();
+			Images enumVal = Images.valueOf(className);
+			g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
+		}
 	}
 	
 	private class StaticPanel extends Layer{
@@ -92,14 +98,15 @@ public class GamePanel extends JLayeredPane{
 					int x = i * rectWidth;
 					int y = j * rectHeight;
 					
-					Entity Entity = room.entities[i][j];
-					if(!(Entity instanceof Alive)){
-						String className = Entity.getClass().getSimpleName();
+					//wat iz dis batu???
+					Entity entity = room.entities[i][j];
+					if(!(entity instanceof Alive) && !(entity instanceof Interactable)){
+						String className = entity.getClass().getSimpleName();
 						Images enumVal = Images.valueOf(className);
 						g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
 					}else{
-						Entity = new Entity();
-						String className = Entity.getClass().getSimpleName();
+						entity = new Entity();
+						String className = entity.getClass().getSimpleName();
 						Images enumVal = Images.valueOf(className);
 						g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
 					}
@@ -119,17 +126,22 @@ public class GamePanel extends JLayeredPane{
 			int rectWidth = getWidth() / COL;
 			int rectHeight = getHeight() / ROW;
 			
-			for (int i = 0; i < ROW; i++) {
-				for (int j = 0; j < COL; j++) {
-					Entity entity = room.entities[i][j];
-					if(entity instanceof Alive){
-						int x = ((Alive) entity).getPoint().getX(); // 60.0 * rectWidth;
-						int y = ((Alive) entity).getPoint().getY(); // 60.0 * rectHeight;
-						String className = entity.getClass().getSimpleName();
-						Images enumVal = Images.valueOf(className);
-						g.drawImage((BufferedImage)(images.get(enumVal)), x, y, this);
-					}
-				}
+			ArrayList<Alive> alives = room.getAliveEntities();
+			
+			for (int i = 0; i < alives.size(); i++) {
+					Alive alive = alives.get(i);
+					int x = alive.getPoint().getX(); // 60.0 * rectWidth;
+					int y = alive.getPoint().getY(); // 60.0 * rectHeight;
+					draw(g, alive, x, y);
+			}
+			
+			ArrayList<Interactable> interactables = room.getInteractableEntities();
+			
+			for (int i = 0; i < interactables.size(); i++) {
+				Interactable interactable = interactables.get(i);
+				int x = interactable.getPoint().getX(); // 60.0 * rectWidth;
+				int y = interactable.getPoint().getY(); // 60.0 * rectHeight;
+				draw(g, interactable, y, x);
 			}
 		}
 	}

@@ -7,6 +7,8 @@ package gui;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.awt.BorderLayout;
+import java.awt.*;
 
 import engine.*;
 
@@ -27,6 +29,7 @@ public class EbolaFrame extends JFrame implements MenuButtonListener{
 		setContentPane(menuPanel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
+		setMinimumSize(new Dimension(600, 800));
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
@@ -37,9 +40,21 @@ public class EbolaFrame extends JFrame implements MenuButtonListener{
 			//GameEngine gameEngine = new GameEngine((GamePanel)panel);
 			GameEngine gameEngine = new GameEngine();
 			panel = gameEngine.getGamePanel();
+			Hud hud = gameEngine.getHud();
+			panel = new GameWithHud((GamePanel)panel, hud);
 		}
 		setContentPane(panel);
 		revalidate();
 		repaint();
 	}
+	
+	private class GameWithHud extends JPanel{
+		
+		public GameWithHud(GamePanel gamePanel, Hud hud){
+			setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+			add(gamePanel);
+			add(hud);
+		}
+	}
+	
 }

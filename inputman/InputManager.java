@@ -32,8 +32,8 @@ public class InputManager implements KeyListener{
 		this.listener = listener;
 	}
 	
-	private void notify(int pressState, int key){
-		listener.inputRecieved(pressState, key);
+	private void notify(boolean[] keys){
+		listener.inputRecieved(keys);
 	}
 	
 	public boolean[] getKeys(){
@@ -45,47 +45,18 @@ public class InputManager implements KeyListener{
     }
     
     public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		System.out.println("Input Recep: " + key);
-		if(key >= 37 && key <= 40){
-			keys[key - 37] = true;
-		}
-		/*
-		if (key == KeyEvent.VK_LEFT) {
-			leftPressed = true;
-		}
-		else if (key == KeyEvent.VK_RIGHT) {
-			rightPressed = true;
-		}
-		else if (key == KeyEvent.VK_UP) {
-			upPressed = true;
-		}
-		else if (key == KeyEvent.VK_DOWN) {
-			downPressed = true;
-		}
-		*/
-		notify(1, key);
+		changeKeys(e, true);
 	} 
 	
 	public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-		if(key >= 37 && key <= 40){
-			keys[key - 37] = false;
-		}
-		/*
-		if (key == KeyEvent.VK_LEFT) {
-			leftPressed = true;
-		}
-		else if (key == KeyEvent.VK_RIGHT) {
-			rightPressed = true;
-		}
-		else if (key == KeyEvent.VK_UP) {
-			upPressed = true;
-		}
-		else if (key == KeyEvent.VK_DOWN) {
-			downPressed = true;
-		}
-		*/
-		notify(0, key);
+		changeKeys(e, false);
     }
+	
+	private void changeKeys(KeyEvent e, boolean flag){
+		int key = e.getKeyCode();
+		if(key >= 37 && key <= 40){
+			keys[key - 37] = flag;
+		}
+		notify(keys);
+	}
 }

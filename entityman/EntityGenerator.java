@@ -21,41 +21,51 @@ public class EntityGenerator{
 	
 	private Celly celly;
 	
-	private ArrayList<Alive> aliveEntities;
-	private ArrayList<Interactable> interactableEntities;
 	private HashMap<Portal, Integer> portalMap;
+	private HashMap<Key, int[]> keyMap;
 	
 	private	int roomCount = 3;							//HARDCODED
 	
 	private final int ROW = GameEngine.ROW;
 	private final int COL = GameEngine.COL;
 	
-	public EntityGenerator(String[][] text, String[] portalText){
+	public EntityGenerator(String[][] text, String[] portalText, String[] keyText){
 		entityFactory = new EntityFactory();
 		entities = new Entity[roomCount][ROW][COL];
-		aliveEntities = new ArrayList<Alive>();
-		interactableEntities = new ArrayList<Interactable>();
 		portalMap = new HashMap<>();
-		generateEntities(text, portalText);
+		keyMap = new HashMap<>();
+		generateEntities(text, portalText, keyText);
 	}
 	
-	private void generateEntities(String[][] text, String[] portalText){
+	private void generateEntities(String[][] text, String[] portalText, String[] keyText){
 		for(int i = 0; i < roomCount; i++){
 			int portalCount = 0;
+			int keyCount = 0;
+			
+			String[] keysOfRoom = null;
+			if(keyText[i] != null){
+				keysOfRoom = keyText[i].split("/");
+			}
+			
 			for(int r = 0; r < ROW; r++){
 				String row = text[i][r];
 				for(int c = 0; c < COL; c++){
 					Entity entity = entityFactory.createObject(row.charAt(c));
 					entity.setPoint(new Point(c * 60, r * 60)); 	//HARDCODED
 					entities[i][r][c] = entity; 	//change this (same with gamepanel)
-					if(entity instanceof Alive){
-						Alive alive = (Alive) entity;
-						aliveEntities.add(alive);
-					}else if (entity instanceof Portal){
+					if (entity instanceof Portal){
 						String ch = "" + portalText[i].charAt(portalCount);
 						portalMap.put((Portal) entity, new Integer(Integer.parseInt(ch)));
 						portalCount++;
-						interactableEntities.add((Portal) entity);
+					}else if (entity instanceof Key){
+						System.out.println(i);
+						String str = keysOfRoom[keyCount];
+						keyCount++;
+						String[] numsStr = str.split("-");
+						int roomNum = Integer.parseInt(numsStr[0]); 
+						int order = Integer.parseInt(numsStr[1]);
+						int[] nums = {roomNum, order};
+						keyMap.put((Key) entity, nums);
 					}
 				}
 			}
@@ -66,12 +76,8 @@ public class EntityGenerator{
 		return portalMap;
 	}
 	
-	public ArrayList<Alive> getAliveEntities(){
-		return aliveEntities;
-	}
-	
-	public ArrayList<Interactable> getInteractableEntities(){
-		return interactableEntities;
+	public HashMap<Key, int[]> getKeyMap(){
+		return keyMap;
 	}
 	
 	public Celly getCelly(){

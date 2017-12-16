@@ -21,6 +21,7 @@ public class MapReader{
 	
 	public String[][] rooms;
 	public String[] portals;
+	public String[] keys;
 	
 	public MapReader(){
 		
@@ -39,11 +40,12 @@ public class MapReader{
 		//Close reader??
 		//No save file??
 		
-		String roomPath = "Maps/" + level;
+		String roomPath = "../Maps/" + level;
 		int roomCount = new File(roomPath).list().length;
 		
 		rooms = new String[roomCount][ROW];
 		portals = new String[roomCount];
+		keys = new String[roomCount];
 		
 		//Find the corresponding level folder and get all the rooms
 		File file;
@@ -61,6 +63,15 @@ public class MapReader{
 				}
 				line = bf.readLine();
 				portals[i] = line;
+				
+				line = bf.readLine();
+				keys[i] = line;
+				
+				System.out.println(i);
+				for (String s : keys) {
+					System.out.println(s);
+				}
+				System.out.println();
 				
 			}catch (IOException e) {
 				e.printStackTrace();

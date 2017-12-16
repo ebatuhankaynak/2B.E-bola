@@ -6,7 +6,14 @@
 package entity;
 public class Celly extends Alive{
 	
+	private Inventory inventory;
+	
 	public Celly(){
 		this.movementSpeedModifier = 1;
+		this.inventory = new Inventory();
+	}
+	
+	public Inventory getInventory(){
+		return inventory;
 	}
 }
