@@ -3,6 +3,9 @@
 * @version 1.0
 * Created: 10/20/2017 
 */
+
+package gui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.GridLayout;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+
 
 public class MenuPanel extends JPanel{
  Image image;

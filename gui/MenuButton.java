@@ -3,6 +3,9 @@
 * @version 1.2
 * Created: 10/20/2017 
 */
+
+package gui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
