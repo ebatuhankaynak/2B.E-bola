@@ -1,3 +1,7 @@
+/*
+Inspired by https://stackoverflow.com/questions/2416935/how-to-play-wav-files-with-java
+*/
+
 package soundman;
 
 import java.io.File;
