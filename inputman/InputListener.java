@@ -9,4 +9,5 @@ import java.awt.event.*;
 
 public interface InputListener{
 	void inputRecieved(boolean[] keys);
+	void inputRecieved();
 }

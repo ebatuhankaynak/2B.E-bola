@@ -10,9 +10,12 @@ import entity.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import engine.*;
+
 public class VirusManager{
 
 	private ArrayList<Virus> viri;
+	private ArrayList<Alive> aliveEntities;
 	private EntityManager entityManager;
 	private Celly celly;
 	
@@ -22,17 +25,23 @@ public class VirusManager{
 		this.celly = celly;
 	}
 	
-	public void update(ArrayList<Virus> viri){
+	public void update(ArrayList<Virus> viri, ArrayList<Alive> aliveEntities){
 		this.viri = viri;
+		this.aliveEntities = aliveEntities;
 		new Timer().schedule(new TimerTask(){
 			public void run() {
-				for(Virus v : viri){
-					v.setHp(v.getHp() - 10);
-					System.out.println(v.getHp());
-					if(v.getHp() == 0){
-						viri.remove(v);
+				 ArrayList<Virus> junk = new ArrayList<Virus>();
+				if(!GameEngine.pause){
+					for(Virus v : viri){
+						v.setHp(v.getHp() - 10);
+						System.out.println(v.getHp());
+						if(v.getHp() == 0){
+							v.setHp(100);
+							junk.remove(v);
+						}
 					}
 				}
+				viri.removeAll(junk);
 			}
 		}, 0, 500);
 	}
@@ -40,6 +49,14 @@ public class VirusManager{
 	public void sampleRandomAction(){
 		for(int i = 0; i < viri.size(); i++){
 			chasePlayer(viri.get(i));
+			final Virus v = viri.get(i);
+			if(viri.get(i) instanceof Ebola){
+				new Timer().schedule(new TimerTask(){
+					public void run() {
+						shootFireball((Ebola)v);
+					}
+				}, 0, 100000);
+			}
 		}
 	}
 	
@@ -73,4 +90,21 @@ public class VirusManager{
 		}
 		virus.setPoint(new Point(vp.getX() + virus.getVelocityX(), vp.getY() + virus.getVelocityY()));
 	}
+	
+	private void shootFireball(Ebola ebola){
+		if(!GameEngine.pause){
+			//Fireball fb = new Fireball();
+			Virus virus = new Virus();
+			//Point ep = ebola.getPoint();
+			virus.setPoint(new Point((int) Math.ceil(Math.random() * 600), (int) Math.ceil(Math.random() * 600)));
+			aliveEntities.add(virus);
+			viri.add(virus);
+		}
+	}
+	
+	public ArrayList<Virus> getViri(){
+		return viri;
+	}
 }
+
+

@@ -7,8 +7,10 @@ package entityman;
 
 import java.awt.event.*;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import entity.*;
+import engine.*;
 
 public class CellyManager{
 	
@@ -70,13 +72,24 @@ public class CellyManager{
 
 		if(checkIfValidMove(point)){
 			celly.setPoint(point);
-			//System.out.println(point);
 		}
 	}
 	
 	public boolean checkInteraction(EffectWindow effectWindow){
 		return effectWindow.contains(celly.getPoint());
 	}
+	
+	/* public void checkHostile(ArrayList<Virus> viri){
+		for(Virus v : viri){
+			System.out.println(v);
+			if(v.getEffectWindow().contains(celly.getPoint())){
+				celly.setHp(celly.getHp() - 10);
+				if(celly.getHp() == 0){
+					GameEngine.gameOver = true;
+				}
+			}
+		}
+	} */
 	
 	public boolean checkIfValidMove(Point point){
 		boolean withinMap = entityManager.checkCoordsWithinMap(point);

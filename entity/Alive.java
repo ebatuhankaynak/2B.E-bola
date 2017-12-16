@@ -10,7 +10,7 @@ import java.awt.Rectangle;
 public class Alive extends Entity{
 	private Point point;
 	protected int movementSpeedModifier;
-	private int hp;						//hp = HealthPoints
+	protected int hp;						//hp = HealthPoints
 	
 	private int velocityX;
 	private int velocityY;

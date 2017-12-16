@@ -46,6 +46,9 @@ public class InputManager implements KeyListener{
     
     public void keyPressed(KeyEvent e) {
 		changeKeys(e, true);
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			listener.inputRecieved();
+		}
 	} 
 	
 	public void keyReleased(KeyEvent e) {

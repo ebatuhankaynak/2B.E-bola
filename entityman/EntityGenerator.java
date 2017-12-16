@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import entity.*;
 import engine.*;
+import gui.*;
 
 public class EntityGenerator{
 	
@@ -24,7 +25,7 @@ public class EntityGenerator{
 	private HashMap<Portal, Integer> portalMap;
 	private HashMap<Key, int[]> keyMap;
 	
-	private	int roomCount = 3;							//HARDCODED
+	private	int roomCount = MapReader.roomCount;
 	
 	private final int ROW = GameEngine.ROW;
 	private final int COL = GameEngine.COL;
@@ -51,8 +52,8 @@ public class EntityGenerator{
 				String row = text[i][r];
 				for(int c = 0; c < COL; c++){
 					Entity entity = entityFactory.createObject(row.charAt(c));
-					entity.setPoint(new Point(c * 60, r * 60)); 	//HARDCODED
-					entities[i][r][c] = entity; 	//change this (same with gamepanel)
+					entity.setPoint(new Point(c * 60, r * 60));
+					entities[i][r][c] = entity;
 					if (entity instanceof Portal){
 						String ch = "" + portalText[i].charAt(portalCount);
 						portalMap.put((Portal) entity, new Integer(Integer.parseInt(ch)));

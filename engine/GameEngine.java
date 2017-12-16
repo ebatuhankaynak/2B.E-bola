@@ -35,6 +35,9 @@ public class GameEngine implements InputListener, EntityEventListener{
 	private MapReader mapReader;
 	private	EntityGenerator entityGenerator;
 	
+	public static boolean pause = false;
+	public static boolean gameOver = false;
+	
 	public GameEngine(){
 		mapReader = new MapReader();
 		entityGenerator = new EntityGenerator(mapReader.rooms, mapReader.portals, mapReader.keys);
@@ -62,10 +65,15 @@ public class GameEngine implements InputListener, EntityEventListener{
 		
 		new Timer().schedule(new TimerTask(){
 			public void run() {
-				entityManager.evaluateInput(inputManager.getKeys());
-				entityManager.runAI();
-				gamePanel.update(map.getCurrentRoom());
-				hud.update(entityManager.getCelly());
+				if(!pause){
+					entityManager.runAI();
+					entityManager.evaluateInput(inputManager.getKeys());
+					gamePanel.update(map.getCurrentRoom());
+					hud.update(entityManager.getCelly());
+					if(gameOver){
+						
+					}
+				}
 			}
 		}, 0, 40);
 	}
@@ -87,12 +95,16 @@ public class GameEngine implements InputListener, EntityEventListener{
 		}
 	}
 	
+	public void inputRecieved(boolean[] keys){
+		
+	}
+	
 	public Hud getHud(){
 		return hud;
 	}
 	
-	public void inputRecieved(boolean[] keys){
-		//entityManager.evaluateInput(keys);
+	public void inputRecieved(){
+		pause = !pause;
 	}
 	
 	public GamePanel getGamePanel(){

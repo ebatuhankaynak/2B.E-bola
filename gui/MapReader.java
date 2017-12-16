@@ -23,6 +23,8 @@ public class MapReader{
 	public String[] portals;
 	public String[] keys;
 	
+	public static int roomCount;
+	
 	public MapReader(){
 		
 		//Read save file to determine which level to load
@@ -41,7 +43,7 @@ public class MapReader{
 		//No save file??
 		
 		String roomPath = "../Maps/" + level;
-		int roomCount = new File(roomPath).list().length;
+		roomCount = new File(roomPath).list().length;
 		
 		rooms = new String[roomCount][ROW];
 		portals = new String[roomCount];

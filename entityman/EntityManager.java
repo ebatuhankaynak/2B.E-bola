@@ -61,7 +61,7 @@ public class EntityManager{
 		this.interactableEntities = interactableEntities;
 		
 		//cellyManager.update(this);
-		virusManager.update(viri);
+		virusManager.update(viri, aliveEntities);
 		//cellyManager = new CellyManager(this, celly);
 	}
 	
@@ -82,12 +82,8 @@ public class EntityManager{
 	//thıs should be ın map manager*??? yews yes it is a table
 	public boolean checkNoObstacle(Point point){
 		//return !(entities[point.x][point.y] instanceof ObstacleTile);
-		return true;							//!!!HARDCODED!!!
+		return true;						
 	}
-	
-	/* public void evaluateInput(int pressState, int key){
-		cellyManager.evaluateInput(pressState, key);
-	} */
 	
 	public void evaluateInput(boolean[] keys){
 		Interactable interactable = checkInteraction();
@@ -97,6 +93,15 @@ public class EntityManager{
 		}else{
 			cellyManager.evaluateInput(keys);
 		}
+		
+		//cellyManager.checkHostile(virusManager.getViri());
+		
+		/* if (virus != null){
+			System.out.println(virus);
+		}else{
+			cellyManager.evaluateInput(keys);
+		} */
+		
 		cellyManager.evaluateInput(keys);
 	}
 	
