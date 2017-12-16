@@ -23,8 +23,8 @@ public class MenuButton extends JButton implements ActionListener{
   String text = panelType.name();
   System.out.println(text);
   try{
-    buttonOnImage = ImageIO.read(new File("..Images/" + "on" + text + ".png"));
-    buttonOffImage = ImageIO.read(new File("..Images/" + "off" + text + ".png"));
+    buttonOnImage = ImageIO.read(new File("../Images/" + "on" + text + ".png"));
+    buttonOffImage = ImageIO.read(new File("../Images/" + "off" + text + ".png"));
   }catch(IOException ex){System.out.println("not found");}
  
   buttonOffImage = buttonOffImage.getScaledInstance( 250, 100,  java.awt.Image.SCALE_SMOOTH ) ;
