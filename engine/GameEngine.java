@@ -51,6 +51,9 @@ public class GameEngine implements InputListener, EntityEventListener{
 		inputManager = new InputManager();
 		inputManager.addListener(this);
 		
+		SoundManager soundManager = new SoundManager();
+		soundManager.playSound("audio1.wav");
+		
 		gamePanel = new GamePanel(inputManager, map.getCurrentRoom(), resourceReader.getImages());
 		gamePanel.requestFocus();
 		
