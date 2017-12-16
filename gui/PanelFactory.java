@@ -11,7 +11,7 @@ public class PanelFactory{
 	public JComponent createPanel(PanelType panelType){
 		switch(panelType){
 			//case PLAY: 			return new GamePanel();
-			case SETTINGS : 	return new JPanel();
+			case SETTINGS : 	return new SettingsPanel();
 			case EXIT :  		System.exit(0);
 			default:		return new JPanel();
 		}
