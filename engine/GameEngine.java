@@ -68,11 +68,6 @@ public class GameEngine implements InputListener, EntityEventListener{
 				hud.update(entityManager.getCelly());
 			}
 		}, 0, 40);
-		/* new Timer().schedule(new TimerTask(){
-			public void run() {
-				entityManager.damageAI();
-			}
-		}, 0, 500); */
 	}
 	
 	public void onEntityEvent(Interactable interactable){

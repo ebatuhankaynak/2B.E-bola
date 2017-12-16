@@ -29,7 +29,7 @@ public class EbolaFrame extends JFrame implements MenuButtonListener{
 		setContentPane(menuPanel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
-		setMinimumSize(new Dimension(600, 800));
+		setSize(new Dimension(600, 800));
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}

@@ -4,8 +4,11 @@
 * Created: 11/08/2017 
 */
 package entityman;
+
 import java.util.ArrayList;
 import entity.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class VirusManager{
 
@@ -21,6 +24,17 @@ public class VirusManager{
 	
 	public void update(ArrayList<Virus> viri){
 		this.viri = viri;
+		new Timer().schedule(new TimerTask(){
+			public void run() {
+				for(Virus v : viri){
+					v.setHp(v.getHp() - 10);
+					System.out.println(v.getHp());
+					if(v.getHp() == 0){
+						viri.remove(v);
+					}
+				}
+			}
+		}, 0, 500);
 	}
 	
 	public void sampleRandomAction(){
